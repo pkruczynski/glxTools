@@ -1,3 +1,4 @@
+
 [submodule "tools/pycharm-blender"]
 	path = tools/tools/pycharm-blender
 	url = https://github.com/mutantbob/pycharm-blender.git
@@ -5,3 +6,4 @@
 [submodule "tools/blender-script-watcher"]
 	path = tools/blender-script-watcher
 	url = https://github.com/wisaac407/blender-script-watcher.git
+
