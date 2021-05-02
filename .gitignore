@@ -1,4 +1,6 @@
 /.idea/
 /venv/
 /places/
-/bpy/pycharm-blender/*
+/tools/pycharm-blender/*
+/tools/blender-script-watcher/*
+/scripts/addons/bpyTools.py
