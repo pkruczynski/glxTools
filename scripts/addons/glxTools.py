@@ -170,7 +170,6 @@ class OBJECT_PT_glxPanel(Panel):
         layout.menu(OBJECT_MT_glxMenu.bl_idname, text='Presets', icon='SCENE')
         layout.separator()
 
-
 # ------------------------------------------------------------------------------
 # Registration
 # ------------------------------------------------------------------------------
