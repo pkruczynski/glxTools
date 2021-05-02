@@ -35,10 +35,9 @@ def ShowMessage(message=' ', title='Message Box', icon='INFO'):
     wm = bpy.context.window_manager
     wm.popup_menu(draw_func=draw, title=title, icon=icon)
 
-
-# ------------------------------------------------------------------------------
-# Scene Properties
-# ------------------------------------------------------------------------------
+#   --------------------------------------------------------------------------------------------------------------------
+#   Properties
+#   --------------------------------------------------------------------------------------------------------------------
 
 class glxProperties(PropertyGroup):
     glx_bool: BoolProperty(
@@ -78,11 +77,10 @@ class glxProperties(PropertyGroup):
         maxlen=1024
     )
 
-    # noinspection PyUnresolvedReferences
-    glx_path: StringProperty(
+    glx_dir_ogre_tools: StringProperty(
         name='Directory',
-        description='Choose a directory:',
-        default='~/Pulpit',
+        description='OgreTools',
+        default='/home/kruk/projects/ogre/bin',
         maxlen=1024,
         subtype='DIR_PATH'
     )
@@ -96,10 +94,9 @@ class glxProperties(PropertyGroup):
                ]
     )
 
-
-# ------------------------------------------------------------------------------
-# Operators
-# ------------------------------------------------------------------------------
+#   --------------------------------------------------------------------------------------------------------------------
+#   Operators
+#   --------------------------------------------------------------------------------------------------------------------
 
 class WM_OT_glxOperator(Operator):
     bl_label = 'Print Values Operator'
@@ -120,12 +117,12 @@ class WM_OT_glxOperator(Operator):
         print('enum state:', glx_tools.glx_enum)
 
         ShowMessage('Values printed.')
+        print('OK')
         return {'FINISHED'}
 
-
-# ------------------------------------------------------------------------------
-# Menus
-# ------------------------------------------------------------------------------
+#   --------------------------------------------------------------------------------------------------------------------
+#   Menus
+#   --------------------------------------------------------------------------------------------------------------------
 
 class OBJECT_MT_glxMenu(bpy.types.Menu):
     bl_label = 'Select'
@@ -138,10 +135,9 @@ class OBJECT_MT_glxMenu(bpy.types.Menu):
         layout.operator('object.select_all', text='Inverse').action = 'INVERT'
         layout.operator('object.select_random', text='Random')
 
-
-# ------------------------------------------------------------------------------
-# Panel in Object Mode
-# ------------------------------------------------------------------------------
+#   --------------------------------------------------------------------------------------------------------------------
+#   Panel in Object Mode
+#   --------------------------------------------------------------------------------------------------------------------
 
 class OBJECT_PT_glxPanel(Panel):
     bl_label = 'glxPanel'
@@ -165,14 +161,14 @@ class OBJECT_PT_glxPanel(Panel):
         layout.prop(glx_tools, 'glx_float')
         layout.prop(glx_tools, 'glx_string', text='Type')
         layout.prop(glx_tools, 'glx_vector', text='')
-        layout.prop(glx_tools, 'glx_path', text='Select')
+        layout.prop(glx_tools, 'glx_dir_ogre_tools')
         layout.operator('wm.glx_operator')
         layout.menu(OBJECT_MT_glxMenu.bl_idname, text='Presets', icon='SCENE')
         layout.separator()
 
-# ------------------------------------------------------------------------------
-# Registration
-# ------------------------------------------------------------------------------
+#   --------------------------------------------------------------------------------------------------------------------
+#   Registration
+#   --------------------------------------------------------------------------------------------------------------------
 
 classes = (
     glxProperties,
@@ -186,7 +182,6 @@ def register():
     for cls in classes:
         bpy.utils.register_class(cls)
     bpy.types.Scene.glx_tools = PointerProperty(type=glxProperties)
-    #ShowMessage('glxTools registered.', title='register()', icon='INFO')
     print('INFO: glxTools registered.')
 
 def unregister():
@@ -195,6 +190,7 @@ def unregister():
     del bpy.types.Scene.glx_tools
     ShowMessage('glxTools unregistered.', title='unregister()', icon='ERROR')
     print('INFO: glxTools unregistered.')
+
 
 if __name__ == '__main__':
     register()
