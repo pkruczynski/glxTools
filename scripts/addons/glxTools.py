@@ -78,8 +78,8 @@ class glxProperties(PropertyGroup):
     )
 
     glx_dir_ogre_tools: StringProperty(
-        name='Directory',
-        description='OgreTools',
+        name='OgreTools',
+        description='StringProperty',
         default='/home/kruk/projects/ogre/bin',
         maxlen=1024,
         subtype='DIR_PATH'
@@ -113,7 +113,7 @@ class WM_OT_glxOperator(Operator):
         print('float value:', glx_tools.glx_float)
         print('vector value:', glx_tools.glx_vector)
         print('string value:', glx_tools.glx_string)
-        print('path value:', glx_tools.glx_path)
+        print('path value:', glx_tools.glx_dir_ogre_tools)
         print('enum state:', glx_tools.glx_enum)
 
         ShowMessage('Values printed.')
